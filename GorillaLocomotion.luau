@@ -14,41 +14,45 @@ TODO:
 local GorillaLocomotion = {}
 local UnityEngine = require("UnityTypesEmulation")
 
-GorillaLocomotion.ErrorCodes = {
-    "Task completed succesfully", -- 1
-    "Unknown task failure", -- 2
-    "Missing a required argument", -- 3
-    "Missing a needed function, variable, or object", -- 4
-    "Could not find function in a module that is required", -- 5
-    "Could not find item in a module that is required", -- 6
-    "This was called on an uninitialized object, type, or module", -- 7
-    "Could not emulate a function", -- 8
-    "Could not emulate a variable", -- 9
-    "Could not make " -- 10
-    "This function is not completed", -- -1
-}
-
 GorillaLocomotion.Player = {
-    Player = nil;
+    Player = nil,
 
-    headCollider = nil;
-    bodyCollider = nil;
+    headCollider = nil,
+    bodyCollider = nil,
 
-    leftHandFollower: UnityEngine.Transform = nil;
-    rightHandFollower: UnityEngine.Transform = nil;
+    leftHandFollower: UnityEngine.Transform = nil,
+    rightHandFollower: UnityEngine.Transform = nil,
 
-    leftHandTransform: UnityEngine.Transform = nil;
-    rightHandTransform: UnityEngine.Transform = nil;
+    leftHandTransform: UnityEngine.Transform = nil,
+    rightHandTransform: UnityEngine.Transform = nil,
 
-    velocityHistorySize: number = nil;
-    maxArmLength: number = nil;
-    unStickDistance: number = nil;
+    velocityHistorySize: number = nil,
+    maxArmLength: number = 1.5,
+    unStickDistance: number = 1,
+
+    velocityLimit: number = nil,
+    maxJumpSpeed: number = nil,
+    jumpMultiplier: number = nil,
+
+    minimumRaycastDistance: number = 0.05,
+    defaultSlideFactor: number = 0.05,
+    defaultPrecision: number = 0.095,
+
+    leftHandOffset: Vector3 = nil;
+    rightHandOffset: Vector3 = nil;
+
+    wasLeftHandTouching: bool = false;
+    wasRightHandTouching: bool = false;
+
+    disableMovement: bool = false;
+
+    function Awake()
+        print("GorillaLocomotion.Player.Awake() called")
+    end
+
+    function InitializeValues()
+        print("GorillaLocomotion.Player.InitializeValues() called")
+    end
 }
-
-function GorillaLocomotion.WhatMyError(err_code: int): string {
-    return (GorillaLocomotion.ErrorCodes[err_code] or "Unknown error")
-}
-
-
 
 return GorillaLocomotion
